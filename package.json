@@ -1,0 +1,28 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "The best way to watch videos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --exec babel-node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BomiChoi/wetube.git"
+  },
+  "author": "Bomi Choi<hibomi97@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BomiChoi/wetube/issues"
+  },
+  "homepage": "https://github.com/BomiChoi/wetube#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.7",
+    "nodemon": "^2.0.15"
+  }
+}
