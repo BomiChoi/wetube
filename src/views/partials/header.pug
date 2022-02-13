@@ -11,9 +11,10 @@ header
                     a(href=`/users/${loggedInUser._id}`)
                         if loggedInUser.avatarUrl === ""
                             span 😀
-                        else
+                        else if loggedInUser.avatarUrl.includes("github")
                             img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
-                li
+                        else
+                            img.header__avatar(src="/" + loggedInUser.avatarUrl)
                     a(href="/videos/upload") Upload Video
                 li
                     a(href="/users/edit") Edit Profile
