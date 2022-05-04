@@ -13,9 +13,11 @@ const app = express();
 const logger = morgan("dev");
 
 app.use((req, res, next) => {
-    res.header("Cross-Origin-Embedder-Policy", "require-corp");
-    res.header("Cross-Origin-Opener-Policy", "same-origin");
-    next();
+  res.header("Cross-Origin-Embedder-Policy", "require-corp");
+  res.header("Cross-Origin-Opener-Policy", "same-origin");
+  res.removeHeader("Cross-Origin-Resource-Policy");
+  res.removeHeader("Cross-Origin-Embedder-Policy");
+  next();
 });
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
@@ -23,21 +25,21 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
-    session({
-        secret: process.env.COOKIE_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            maxAge: 20000,
-        },
-        store: MongoStore.create({ mongoUrl: process.env.DB_URL })
-    })
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+  })
 );
 app.use((req, res, next) => {
-    req.sessionStore.all((error, sessions) => {
-        // console.log(sessions);
-        next();
-    });
+  req.sessionStore.all((error, sessions) => {
+    // console.log(sessions);
+    next();
+  });
 });
 app.use(flash());
 app.use(localsMiddleware);

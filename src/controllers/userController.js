@@ -64,7 +64,7 @@ export const startGithubLogin = (req, res) => {
     const baseUrl = "https://github.com/login/oauth/authorize";
     const config = {
         client_id: process.env.GH_CLIENT,
-        allow_signup: false,
+        allow_signup: true,
         scope: "read:user user:email",
     };
     const params = new URLSearchParams(config).toString();
@@ -149,7 +149,7 @@ export const postEdit = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
         _id,
         {
-            avatarUrl: file ? file.path : avatarUrl,
+            avatarUrl: file ? file.location : avatarUrl,
             name,
             email,
             username,

@@ -8,13 +8,15 @@ header
                     i.fas.fa-search
             if loggedIn
                 li
-                    a(href=`/users/${loggedInUser._id}`)
-                        if loggedInUser.avatarUrl === ""
-                            span 😀
-                        else if loggedInUser.avatarUrl.includes("github")
-                            img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
+                    a(href=`#`)
+                        if loggedInUser.avatarUrl
+                            if loggedInUser.avatarUrl.includes("github")
+                                img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
+                            else
+                                img.header__avatar(src=loggedInUser.avatarUrl,crossorigin)
                         else
-                            img.header__avatar(src="/" + loggedInUser.avatarUrl)
+                            span 😀
+                li
                     a(href="/videos/upload") Upload Video
                 li
                     a(href="/users/edit") Edit Profile
